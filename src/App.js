@@ -3,6 +3,7 @@ import { DataQuery } from '@dhis2/app-runtime'
 import i18n from '@dhis2/d2-i18n'
 import classes from './App.module.css'
 import Programs from './components/Programs'
+import ProgramsComponents from './components/ProgramsComponents'
 
 const query = {
     me: {
@@ -10,8 +11,8 @@ const query = {
     },
     programs: {
         resource: 'programs',
-        params:{
-            fields:["*"]
+        params: {
+            fields: ["*"]
         }
     },
 }
@@ -28,7 +29,11 @@ const MyApp = () => (
                             {i18n.t('Hello {{name}}', { name: data.me.name })}
                         </h1>
                         <h3>{i18n.t('Welcome to DHIS2!')}</h3> */}
-                        <Programs proprams={data.programs.programs}/>
+                        <div className={classes.padding}>
+                            <ProgramsComponents programs={data.programs.programs} style={classes} />
+
+
+                        </div>
                     </>
                 )
             }}

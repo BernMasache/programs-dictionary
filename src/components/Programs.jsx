@@ -1,85 +1,85 @@
 import React, { useEffect } from 'react'
-import { Button, DropdownButton, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
-export default function Programs(props) {
-  // useEffect(() => {
+import { DropdownButton, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
 
-  //   console.log(props.proprams);
-  // }, [])
+export default function Programs(props) {
 
   return (
     <div>
-      <Menu>
-        <MenuSectionHeader label="Programs Dictionary" />
+      <div className="">
+        <Menu>
+          <MenuSectionHeader label="Programs Dictionary" />
+          <MenuDivider />
+        </Menu>
+        <div className={props.style.padding}>
+          <DropdownButton
+            component={<FlyoutMenu>
+              {
+                props.proprams.map((program, key) => {
+                  return <MenuItem label
+                    ={program.displayName} key={key} onClick={() => props.setSelectedProgram(program)} />
+                })
+              }
+            </FlyoutMenu>}
+
+            name
+            ="programs"
+            value
+            ="programs"
+          >
+            Programs
+          </DropdownButton>
+        </div>
         <MenuDivider />
-      </Menu>
-      <div className="">
-        <DropdownButton
-          component={<FlyoutMenu>
-            {
-              props.proprams.map((program, key) => {
-                return <MenuItem label
-                  ={program.displayName} key={key} onClick={() => console.log(program)} />
-              })
-            }
-          </FlyoutMenu>}
-
-          name
-          ="programs"
-          value
-          ="programs"
-        >
-          Programs
-        </DropdownButton>
       </div>
-      <MenuDivider />
       <div className="">
-        <Table>
-          <TableHead>
-            <TableRowHead>
-              <TableCellHead>
-                Name
-              </TableCellHead>
-              <TableCellHead>
-                Domain
-              </TableCellHead>
-              <TableCellHead>
-                Created Date
-              </TableCellHead>
-              <TableCellHead>
-                Last updated
-              </TableCellHead>
-              <TableCellHead>
-                Age
-              </TableCellHead>
-              <TableCellHead>
-                Registering unit
-              </TableCellHead>
-              <TableCellHead>
-                Assigned user
-              </TableCellHead>
-              <TableCellHead>
-                Status
-              </TableCellHead>
-            </TableRowHead>
-          </TableHead>
-          <TableBody>
+        {
+          props.selectedProgram && Object.keys(props.selectedProgram).length > 0 ? <Table>
+            <TableHead>
+              <TableRowHead>
+                <TableCellHead>
+                  Name
+                </TableCellHead>
+                <TableCellHead>
+                  Domain
+                </TableCellHead>
+                <TableCellHead>
+                  Created Date
+                </TableCellHead>
+                <TableCellHead>
+                  Last updated
+                </TableCellHead>
+                <TableCellHead>
+                  Age
+                </TableCellHead>
+                <TableCellHead>
+                  Registering unit
+                </TableCellHead>
+                <TableCellHead>
+                  Assigned user
+                </TableCellHead>
+                <TableCellHead>
+                  Status
+                </TableCellHead>
+              </TableRowHead>
+            </TableHead>
+            <TableBody>
 
-            {
-              props.proprams.map((program, key) => {
-                return <TableRow key={key}>
+              {
+
+                <TableRow >
                   <TableCell>
-                    {program.displayName}
+                    {props?.selectedProgram?.displayName}
                   </TableCell>
                   <TableCell>
                     {
-                      program.programType == "WITH_REGISTRATION" ? "Tracker" : "Aggregate"
+                      props?.selectedProgram?.programsType == "WITH_REGISTRATION" ? "Tracker" : "Aggregate"
                     }
                   </TableCell>
                   <TableCell>
-                    {program.created.split("T")[0]}
+                    {props?.selectedProgram?.created.split("T")[0]}
                   </TableCell>
                   <TableCell>
-                    {program.lastUpdated.split("T")[0]}
+                    {props?.selectedProgram?.lastUpdated.split("T")[0]}
                   </TableCell>
                   <TableCell>
                     66
@@ -95,19 +95,21 @@ export default function Programs(props) {
                   </TableCell>
                 </TableRow>
 
-              })}
+
+              }
 
 
 
-          </TableBody>
-          <TableFoot>
-            <TableRow>
-              <TableCell colSpan="8">
-                {/* <TableFooterButton /> */}
-              </TableCell>
-            </TableRow>
-          </TableFoot>
-        </Table>
+            </TableBody>
+            <TableFoot>
+              <TableRow>
+                <TableCell colSpan="8">
+                  {/* <TableFooterButton /> */}
+                </TableCell>
+              </TableRow>
+            </TableFoot>
+          </Table> : "Select one program"
+        }
       </div>
     </div>
   )
