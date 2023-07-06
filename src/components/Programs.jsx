@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { DropdownButton, Tag, NoticeBox, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
+import { DropdownButton, Button, NoticeBox, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
 
 export default function Programs(props) {
 
@@ -10,22 +10,31 @@ export default function Programs(props) {
           <MenuSectionHeader label="Programs Dictionary" />
           <MenuDivider />
         </Menu>
-        <div>
-          <DropdownButton
-            component={<FlyoutMenu>
-              {
-                props?.proprams?.map((program, key) => {
-                  return <MenuItem label
-                    ={program?.displayName} key={key} onClick={() => props?.setSelectedProgram(program)} />
-                })
-              }
-            </FlyoutMenu>}
+        <div className=''>
+          <div className={props.style.tagCss}>
+            <DropdownButton
+              className={props.style.tagcss}
+              component={<FlyoutMenu>
+                {
+                  props?.proprams?.map((program, key) => {
+                    return <MenuItem label
+                      ={program?.displayName} key={key} onClick={() => props?.setSelectedProgram(program)} />
+                  })
+                }
+              </FlyoutMenu>}
 
-            name="programs"
-            value="programs"
-          >
-            Select program
-          </DropdownButton>
+              name="programs"
+              value="programs"
+            >
+              Select program
+            </DropdownButton>
+
+            <Button secondary name="Small button" className={props.style.tagcss}
+              value="number of programs">
+              There are {`${props?.proprams.length}`} program(s) in this instance
+            </Button>
+          </div>
+
         </div>
         <MenuDivider />
       </div>
@@ -97,122 +106,9 @@ export default function Programs(props) {
 
             </Table>
 
-            <div className={props?.style?.wrapper}>
+            <div className={`${props?.style?.wrapper}`}>
 
               <div className={props?.style?.programsCss}>
-                <div className={props?.style?.prog}>
-                  <NoticeBox>
-                    Programs Attibutes
-                  </NoticeBox>
-                  <div className={props?.style?.padding}>
-                    <Table>
-                      <TableHead>
-                        <TableRowHead>
-                          <TableCellHead>
-                            Name
-                          </TableCellHead>
-                          <TableCellHead>
-                            DisplayName
-                          </TableCellHead>
-                          <TableCellHead>
-                            ValueType
-                          </TableCellHead>
-                          <TableCellHead>
-                            CreatedDate
-                          </TableCellHead>
-                          <TableCellHead>
-                            LastUpdated
-                          </TableCellHead>
-
-                        </TableRowHead>
-                      </TableHead>
-                      <TableBody>
-                        {
-                          props?.selectedProgram?.programTrackedEntityAttributes.map((te, key) => {
-                            return <TableRow key={key}>
-                              <TableCell>
-                                {te?.name}
-                              </TableCell>
-                              <TableCell>
-                                {te?.displayName}
-                              </TableCell>
-                              <TableCell>
-                                {
-                                  te?.valueType
-                                }
-                              </TableCell>
-                              <TableCell>
-                                {te?.created.split("T")[0]}
-                              </TableCell>
-
-                              <TableCell>
-                                {te?.lastUpdated.split("T")[0]}
-                              </TableCell>
-
-                            </TableRow>
-
-
-                          })
-                        }
-                      </TableBody>
-
-                    </Table>
-                  </div>
-                </div>
-
-                <div className={props?.style?.prog}>
-                  <NoticeBox>
-                    Programs Stages
-                  </NoticeBox>
-                  <div className={props?.style?.padding}>
-                    <Table>
-                      <TableHead>
-                        <TableRowHead>
-                          <TableCellHead>
-                            DisplayName
-                          </TableCellHead>
-                          <TableCellHead>
-                            FormType
-                          </TableCellHead>
-                          <TableCellHead>
-                            CreatedDate
-                          </TableCellHead>
-                          <TableCellHead>
-                            LastUpdated
-                          </TableCellHead>
-
-                        </TableRowHead>
-                      </TableHead>
-                      <TableBody>
-                        {
-                          props?.selectedProgram?.programStages.map((programStage, key) => {
-                            return <TableRow key={key}>
-                              <TableCell>
-                                {programStage?.displayName}
-                              </TableCell>
-                              <TableCell>
-                                {
-                                  programStage?.formType
-                                }
-                              </TableCell>
-                              <TableCell>
-                                {programStage?.created.split("T")[0]}
-                              </TableCell>
-
-                              <TableCell>
-                                {programStage?.lastUpdated.split("T")[0]}
-                              </TableCell>
-
-                            </TableRow>
-
-
-                          })
-                        }
-                      </TableBody>
-
-                    </Table>
-                  </div>
-                </div>
                 <div className={props?.style?.prog}>
                   <NoticeBox>
                     Data Elements
@@ -274,6 +170,120 @@ export default function Programs(props) {
                     </Table>
                   </div>
                 </div>
+                <div className={props?.style?.prog}>
+                  <NoticeBox>
+                    Program Tracked Entity Attributes
+                  </NoticeBox>
+                  <div className={props?.style?.padding}>
+                    <Table>
+                      <TableHead>
+                        <TableRowHead>
+                          <TableCellHead>
+                            Name
+                          </TableCellHead>
+                          <TableCellHead>
+                            DisplayName
+                          </TableCellHead>
+                          <TableCellHead>
+                            ValueType
+                          </TableCellHead>
+                          <TableCellHead>
+                            CreatedDate
+                          </TableCellHead>
+                          <TableCellHead>
+                            LastUpdated
+                          </TableCellHead>
+
+                        </TableRowHead>
+                      </TableHead>
+                      <TableBody>
+                        {
+                          props?.selectedProgram?.programTrackedEntityAttributes.map((te, key) => {
+                            return <TableRow key={key}>
+                              <TableCell>
+                                {te?.name}
+                              </TableCell>
+                              <TableCell>
+                                {te?.displayName}
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  te?.valueType
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {te?.created.split("T")[0]}
+                              </TableCell>
+
+                              <TableCell>
+                                {te?.lastUpdated.split("T")[0]}
+                              </TableCell>
+
+                            </TableRow>
+
+
+                          })
+                        }
+                      </TableBody>
+
+                    </Table>
+                  </div>
+                </div>
+
+                <div className={props?.style?.prog}>
+                  <NoticeBox>
+                    Program Stages
+                  </NoticeBox>
+                  <div className={props?.style?.padding}>
+                    <Table>
+                      <TableHead>
+                        <TableRowHead>
+                          <TableCellHead>
+                            DisplayName
+                          </TableCellHead>
+                          <TableCellHead>
+                            FormType
+                          </TableCellHead>
+                          <TableCellHead>
+                            CreatedDate
+                          </TableCellHead>
+                          <TableCellHead>
+                            LastUpdated
+                          </TableCellHead>
+
+                        </TableRowHead>
+                      </TableHead>
+                      <TableBody>
+                        {
+                          props?.selectedProgram?.programStages.map((programStage, key) => {
+                            return <TableRow key={key}>
+                              <TableCell>
+                                {programStage?.displayName}
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  programStage?.formType
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {programStage?.created.split("T")[0]}
+                              </TableCell>
+
+                              <TableCell>
+                                {programStage?.lastUpdated.split("T")[0]}
+                              </TableCell>
+
+                            </TableRow>
+
+
+                          })
+                        }
+                      </TableBody>
+
+                    </Table>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>

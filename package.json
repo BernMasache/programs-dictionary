@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@dhis2/app-runtime": "^3.9.4",
-    "@dhis2/ui": "^8.13.13"
+    "@dhis2/ui": "^8.13.13",
+    "js-cookie": "^3.0.5"
   }
 }

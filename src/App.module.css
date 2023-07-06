@@ -9,12 +9,21 @@
 }
 
 .tableCss {}
-
+.tagCss{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+    margin: 5px;
+}
+.tagcss{
+    flex: 1;
+    margin: 5px;
+    transition: 0.3s;
+}
 .wrapper {
-    padding: 5px;
     max-width: 1920px;
     width: 100%;
-    margin: 5px auto;
+    margin: 10px auto;
 }
 
 .programsCss {
@@ -31,7 +40,7 @@
 }
 
 @media screen and (max-width: 980px) {
-    .programsCss .prog{
+    .programsCss .prog {
         margin-bottom: 5px;
         flex-basis: 40%;
     }
