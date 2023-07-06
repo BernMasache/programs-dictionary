@@ -3,9 +3,6 @@ import { DropdownButton, Tag, NoticeBox, FlyoutMenu, MenuItem, Menu, MenuSection
 
 export default function Programs(props) {
 
-  // useEffect(() => {
-  //   console.log(props.programStagesDataElements);
-  // })
   return (
     <div>
       <div className="">
@@ -17,9 +14,9 @@ export default function Programs(props) {
           <DropdownButton
             component={<FlyoutMenu>
               {
-                props.proprams.map((program, key) => {
+                props?.proprams?.map((program, key) => {
                   return <MenuItem label
-                    ={program.displayName} key={key} onClick={() => props.setSelectedProgram(program)} />
+                    ={program?.displayName} key={key} onClick={() => props?.setSelectedProgram(program)} />
                 })
               }
             </FlyoutMenu>}
@@ -34,7 +31,7 @@ export default function Programs(props) {
       </div>
       <div className="">
         {
-          props.selectedProgram && Object.keys(props.selectedProgram).length > 0 ? <div className={props.style.tableCss}>
+          props?.selectedProgram && Object.keys(props?.selectedProgram)?.length > 0 ? <div className={props?.style?.tableCss}>
 
             <Table>
               <TableHead>
@@ -89,10 +86,10 @@ export default function Programs(props) {
                       {props?.selectedProgram?.displayFormName}
                     </TableCell>
                     <TableCell>
-                      {props?.selectedProgram?.created.split("T")[0]}
+                      {props?.selectedProgram?.created?.split("T")[0]}
                     </TableCell>
                     <TableCell>
-                      {props?.selectedProgram?.lastUpdated.split("T")[0]}
+                      {props?.selectedProgram?.lastUpdated?.split("T")[0]}
                     </TableCell>
                   </TableRow>
                 }
@@ -100,14 +97,14 @@ export default function Programs(props) {
 
             </Table>
 
-            <div className={props.style.wrapper}>
+            <div className={props?.style?.wrapper}>
 
-              <div className={props.style.programsCss}>
-                <div className={props.style.prog}>
+              <div className={props?.style?.programsCss}>
+                <div className={props?.style?.prog}>
                   <NoticeBox>
                     Programs Attibutes
                   </NoticeBox>
-                  <div className={props.style.padding}>
+                  <div className={props?.style?.padding}>
                     <Table>
                       <TableHead>
                         <TableRowHead>
@@ -163,11 +160,11 @@ export default function Programs(props) {
                   </div>
                 </div>
 
-                <div className={props.style.prog}>
+                <div className={props?.style?.prog}>
                   <NoticeBox>
                     Programs Stages
                   </NoticeBox>
-                  <div className={props.style.padding}>
+                  <div className={props?.style?.padding}>
                     <Table>
                       <TableHead>
                         <TableRowHead>
@@ -216,11 +213,11 @@ export default function Programs(props) {
                     </Table>
                   </div>
                 </div>
-                <div className={props.style.prog}>
+                <div className={props?.style?.prog}>
                   <NoticeBox>
                     Data Elements
                   </NoticeBox>
-                  <div className={props.style.padding}>
+                  <div className={props?.style?.padding}>
                     <Table>
                       <TableHead>
                         <TableRowHead>
@@ -260,11 +257,11 @@ export default function Programs(props) {
                                 }
                               </TableCell>
                               <TableCell>
-                                {dataElement?.dataElement?.created.split("T")[0]}
+                                {dataElement?.dataElement?.created?.split("T")[0]}
                               </TableCell>
 
                               <TableCell>
-                                {dataElement?.dataElement?.lastUpdated.split("T")[0]}
+                                {dataElement?.dataElement?.lastUpdated?.split("T")[0]}
                               </TableCell>
 
                             </TableRow>
