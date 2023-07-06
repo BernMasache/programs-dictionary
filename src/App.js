@@ -12,7 +12,7 @@ const query = {
     programs: {
         resource: 'programs',
         params: {
-            fields: ["*"]
+            fields: ["id,name,displayName,displayShortName,displayFormName,formName,programType,created,lastUpdated,shortName,formName,programTrackedEntityAttributes('valueType,name,formName,displayFormname,displayName,displayShortName,created,lastUpdated'),programStages('id,created,name,lastUpdated,displayName,displayFormName,formType,programStageDataElements('id,created,name,lastUpdate,dataElement('*')')')"]
         }
     },
 }

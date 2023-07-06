@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
-import { DropdownButton, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
+import { DropdownButton, Tag, NoticeBox, FlyoutMenu, MenuItem, Menu, MenuSectionHeader, MenuDivider, Table, TableHead, TableRow, TableCell, TableBody, TableRowHead, TableCellHead, TableFoot } from '@dhis2/ui'
 
 export default function Programs(props) {
 
+  // useEffect(() => {
+  //   console.log(props.programStagesDataElements);
+  // })
   return (
     <div>
       <div className="">
@@ -10,7 +13,7 @@ export default function Programs(props) {
           <MenuSectionHeader label="Programs Dictionary" />
           <MenuDivider />
         </Menu>
-        <div className={props.style.padding}>
+        <div>
           <DropdownButton
             component={<FlyoutMenu>
               {
@@ -21,96 +24,270 @@ export default function Programs(props) {
               }
             </FlyoutMenu>}
 
-            name
-            ="programs"
-            value
-            ="programs"
+            name="programs"
+            value="programs"
           >
-            Programs
+            Select program
           </DropdownButton>
         </div>
         <MenuDivider />
       </div>
       <div className="">
         {
-          props.selectedProgram && Object.keys(props.selectedProgram).length > 0 ? <Table>
-            <TableHead>
-              <TableRowHead>
-                <TableCellHead>
-                  Name
-                </TableCellHead>
-                <TableCellHead>
-                  Domain
-                </TableCellHead>
-                <TableCellHead>
-                  Created Date
-                </TableCellHead>
-                <TableCellHead>
-                  Last updated
-                </TableCellHead>
-                <TableCellHead>
-                  Age
-                </TableCellHead>
-                <TableCellHead>
-                  Registering unit
-                </TableCellHead>
-                <TableCellHead>
-                  Assigned user
-                </TableCellHead>
-                <TableCellHead>
-                  Status
-                </TableCellHead>
-              </TableRowHead>
-            </TableHead>
-            <TableBody>
+          props.selectedProgram && Object.keys(props.selectedProgram).length > 0 ? <div className={props.style.tableCss}>
 
-              {
+            <Table>
+              <TableHead>
+                <TableRowHead>
+                  <TableCellHead>
+                    Name
+                  </TableCellHead>
+                  <TableCellHead>
+                    ProgramType
+                  </TableCellHead>
 
-                <TableRow >
-                  <TableCell>
-                    {props?.selectedProgram?.displayName}
-                  </TableCell>
-                  <TableCell>
-                    {
-                      props?.selectedProgram?.programsType == "WITH_REGISTRATION" ? "Tracker" : "Aggregate"
-                    }
-                  </TableCell>
-                  <TableCell>
-                    {props?.selectedProgram?.created.split("T")[0]}
-                  </TableCell>
-                  <TableCell>
-                    {props?.selectedProgram?.lastUpdated.split("T")[0]}
-                  </TableCell>
-                  <TableCell>
-                    66
-                  </TableCell>
-                  <TableCell>
-                    Jawi
-                  </TableCell>
-                  <TableCell>
-                    Sofie Hubert
-                  </TableCell>
-                  <TableCell>
-                    Incomplete
-                  </TableCell>
-                </TableRow>
+                  <TableCellHead>
+                    DisplayName
+                  </TableCellHead>
+                  <TableCellHead>
+                    ShortName
+                  </TableCellHead>
+                  <TableCellHead>
+                    FormName
+                  </TableCellHead>
+                  <TableCellHead>
+                    CreatedDate
+                  </TableCellHead>
+                  <TableCellHead>
+                    LastUpdated
+                  </TableCellHead>
+                </TableRowHead>
+              </TableHead>
+              <TableBody>
+
+                {
+
+                  <TableRow>
+                    <TableCell>
+                      {props?.selectedProgram?.name}
+                    </TableCell>
+                    <TableCell>
+                      {
+                        props?.selectedProgram?.programType == "WITH_REGISTRATION" ? "Tracker" : "Aggregate"
+                      }
+                    </TableCell>
+
+                    <TableCell>
+                      {props?.selectedProgram?.displayName}
+                    </TableCell>
+                    <TableCell>
+                      {
+                        props?.selectedProgram?.displayShortName
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {props?.selectedProgram?.displayFormName}
+                    </TableCell>
+                    <TableCell>
+                      {props?.selectedProgram?.created.split("T")[0]}
+                    </TableCell>
+                    <TableCell>
+                      {props?.selectedProgram?.lastUpdated.split("T")[0]}
+                    </TableCell>
+                  </TableRow>
+                }
+              </TableBody>
+
+            </Table>
+
+            <div className={props.style.wrapper}>
+
+              <div className={props.style.programsCss}>
+                <div className={props.style.prog}>
+                  <NoticeBox>
+                    Programs Attibutes
+                  </NoticeBox>
+                  <div className={props.style.padding}>
+                    <Table>
+                      <TableHead>
+                        <TableRowHead>
+                          <TableCellHead>
+                            Name
+                          </TableCellHead>
+                          <TableCellHead>
+                            DisplayName
+                          </TableCellHead>
+                          <TableCellHead>
+                            ValueType
+                          </TableCellHead>
+                          <TableCellHead>
+                            CreatedDate
+                          </TableCellHead>
+                          <TableCellHead>
+                            LastUpdated
+                          </TableCellHead>
+
+                        </TableRowHead>
+                      </TableHead>
+                      <TableBody>
+                        {
+                          props?.selectedProgram?.programTrackedEntityAttributes.map((te, key) => {
+                            return <TableRow key={key}>
+                              <TableCell>
+                                {te?.name}
+                              </TableCell>
+                              <TableCell>
+                                {te?.displayName}
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  te?.valueType
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {te?.created.split("T")[0]}
+                              </TableCell>
+
+                              <TableCell>
+                                {te?.lastUpdated.split("T")[0]}
+                              </TableCell>
+
+                            </TableRow>
 
 
-              }
+                          })
+                        }
+                      </TableBody>
+
+                    </Table>
+                  </div>
+                </div>
+
+                <div className={props.style.prog}>
+                  <NoticeBox>
+                    Programs Stages
+                  </NoticeBox>
+                  <div className={props.style.padding}>
+                    <Table>
+                      <TableHead>
+                        <TableRowHead>
+                          <TableCellHead>
+                            DisplayName
+                          </TableCellHead>
+                          <TableCellHead>
+                            FormType
+                          </TableCellHead>
+                          <TableCellHead>
+                            CreatedDate
+                          </TableCellHead>
+                          <TableCellHead>
+                            LastUpdated
+                          </TableCellHead>
+
+                        </TableRowHead>
+                      </TableHead>
+                      <TableBody>
+                        {
+                          props?.selectedProgram?.programStages.map((programStage, key) => {
+                            return <TableRow key={key}>
+                              <TableCell>
+                                {programStage?.displayName}
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  programStage?.formType
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {programStage?.created.split("T")[0]}
+                              </TableCell>
+
+                              <TableCell>
+                                {programStage?.lastUpdated.split("T")[0]}
+                              </TableCell>
+
+                            </TableRow>
 
 
+                          })
+                        }
+                      </TableBody>
 
-            </TableBody>
-            <TableFoot>
-              <TableRow>
-                <TableCell colSpan="8">
-                  {/* <TableFooterButton /> */}
-                </TableCell>
-              </TableRow>
-            </TableFoot>
-          </Table> : "Select one program"
+                    </Table>
+                  </div>
+                </div>
+                <div className={props.style.prog}>
+                  <NoticeBox>
+                    Data Elements
+                  </NoticeBox>
+                  <div className={props.style.padding}>
+                    <Table>
+                      <TableHead>
+                        <TableRowHead>
+                          <TableCellHead>
+                            Name
+                          </TableCellHead>
+                          <TableCellHead>
+                            DisplayName
+                          </TableCellHead>
+                          <TableCellHead>
+                            ValueType
+                          </TableCellHead>
+                          <TableCellHead>
+                            CreatedDate
+                          </TableCellHead>
+                          <TableCellHead>
+                            LastUpdated
+                          </TableCellHead>
+
+                        </TableRowHead>
+                      </TableHead>
+                      <TableBody>
+                        {
+                          props?.programStagesDataElements?.map((dataElement, key) => {
+                            return <TableRow key={key}>
+                              <TableCell>
+                                {dataElement?.dataElement?.name}
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  dataElement?.dataElement?.formName
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {
+                                  dataElement.dataElement?.valueType
+                                }
+                              </TableCell>
+                              <TableCell>
+                                {dataElement?.dataElement?.created.split("T")[0]}
+                              </TableCell>
+
+                              <TableCell>
+                                {dataElement?.dataElement?.lastUpdated.split("T")[0]}
+                              </TableCell>
+
+                            </TableRow>
+
+
+                          })
+                        }
+                      </TableBody>
+
+                    </Table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            : <NoticeBox>
+              Select a program
+            </NoticeBox>
         }
+
+
       </div>
+
     </div>
   )
 }

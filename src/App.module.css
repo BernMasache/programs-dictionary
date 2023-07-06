@@ -3,6 +3,36 @@
     height: 100%;
     font-size: 1rem;
 }
-.padding{
-    padding:10px
+
+.padding {
+    padding: 10px
+}
+
+.tableCss {}
+
+.wrapper {
+    padding: 5px;
+    max-width: 1920px;
+    width: 100%;
+    margin: 5px auto;
+}
+
+.programsCss {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: 5px;
+}
+
+.prog {
+    flex: 1;
+    margin: 2px;
+    transition: 0.3s;
+}
+
+@media screen and (max-width: 980px) {
+    .programsCss .prog{
+        margin-bottom: 5px;
+        flex-basis: 40%;
+    }
 }
