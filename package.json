@@ -1,7 +1,7 @@
 {
   "name": "programs-dictionary",
   "version": "1.0.0",
-  "description": "",
+  "description": "This app displays all programs, its tracked entity attributes, program stages and data elements associated to that program stage based to the user account type",
   "license": "BSD-3-Clause",
   "private": true,
   "scripts": {
