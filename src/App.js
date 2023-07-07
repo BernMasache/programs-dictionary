@@ -25,14 +25,8 @@ const MyApp = () => (
                 if (loading) return <span>...</span>
                 return (
                     <>
-                        {/* <h1>
-                            {i18n.t('Hello {{name}}', { name: data.me.name })}
-                        </h1>
-                        <h3>{i18n.t('Welcome to DHIS2!')}</h3> */}
                         <div className={classes.padding}>
                             <ProgramsComponents programs={data.programs.programs} style={classes} />
-
-
                         </div>
                     </>
                 )
